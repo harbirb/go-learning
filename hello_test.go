@@ -2,6 +2,7 @@ package main
 
 import "testing"
 
+// using subtests. tests grouped together for the Hello function
 func TestHello(t *testing.T) {
 	t.Run("saying hello to people", func(t *testing.T) {
 		got := Hello("Chris", "")

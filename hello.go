@@ -4,22 +4,35 @@ import (
 	"fmt"
 )
 
-const englishHelloPrefix = "Hello, "
-const spanishHelloPrefix = "Hola, "
-const frenchHelloPrefix = "Bonjour, "
+// can group constants in a block, declare "const" just once
+const (
+	englishHelloPrefix = "Hello, "
+	spanishHelloPrefix = "Hola, "
+	spanish            = "Spanish"
+	french             = "French"
+	frenchHelloPrefix  = "Bonjour, "
+)
 
+// Functions starting with capital letter are public
 func Hello(name, language string) string {
 	if name == "" {
 		name = "World"
 	}
-	if language == "Spanish" {
-		return spanishHelloPrefix + name
+	return greetingPrefix(language) + name
+}
+
+// (prefix string) makes a named return value, creates variable prefix for this function
+func greetingPrefix(language string) (prefix string) {
+	switch language {
+	case spanish:
+		prefix = spanishHelloPrefix
+	case french:
+		prefix = frenchHelloPrefix
+	default:
+		prefix = englishHelloPrefix
 	}
-	if language == "French" {
-		
-		return frenchHelloPrefix + name
-	}
-	return englishHelloPrefix + name
+	// dont have to explicitly say "return prefix" since named return is defined above
+	return
 }
 
 func main() {
